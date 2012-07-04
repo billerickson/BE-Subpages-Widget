@@ -1,0 +1,17 @@
+msgid "Lists current section subpages"
+msgstr "Liste les sous pages de la section courante"
+
+msgid "Subpages Widget"
+msgstr "Widget Sous-pages"
+
+msgid "Title:"
+msgstr "Titre :"
+
+msgid "Use top level page as section title."
+msgstr "Utiliser la page de plus haut niveau comme titre de section."
+
+msgid "Make title a link"
+msgstr "Ajouter un lien sur le titre"
+
+msgid "only if \"use top level page\" is checked"
+msgstr "seulement si \"Utiliser la page de plus haut niveau\" est coché"
