@@ -23,6 +23,8 @@ Contributors:
 - [billerickson](http://profiles.wordpress.org/billerickson)
 - [scil](http://profiles.wordpress.org/scil/)
 
+[Support Forum](https://github.com/billerickson/BE-Subpages-Widget/issues)
+
 == Changelog ==
 
 = 1.1 =
