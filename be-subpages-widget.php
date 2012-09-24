@@ -61,6 +61,7 @@ class BE_Subpages_Widget extends WP_Widget {
 		$args = array(
 			'child_of' => $parents[0],
 			'parent' => $parents[0],
+			'sort_column' => 'menu_order'
 		);
 		$subpages = get_pages( apply_filters( 'be_subpages_widget_args', $args ) );
 		
