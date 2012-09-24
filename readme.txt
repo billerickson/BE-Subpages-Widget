@@ -28,6 +28,7 @@ Contributors:
 == Changelog ==
 
 = 1.2 =
+* Add class for first menu item
 * Add filter for widget title
 * Sort by menu order
 
