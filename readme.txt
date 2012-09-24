@@ -27,6 +27,9 @@ Contributors:
 
 == Changelog ==
 
+= 1.2 =
+* Add filter for widget title
+
 = 1.1 =
 * Allow deeper menu (current page's subpages)
 * French Translation
