@@ -29,6 +29,7 @@ Contributors:
 
 = 1.2 =
 * Add filter for widget title
+* Sort by menu order
 
 = 1.1 =
 * Allow deeper menu (current page's subpages)
