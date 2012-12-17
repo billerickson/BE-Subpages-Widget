@@ -124,6 +124,7 @@ class BE_Subpages_Widget extends WP_Widget {
 				$args = array(
 					'child_of' => $subpage->ID,
 					'parent' => $subpage->ID,
+					'sort_column' => 'menu_order'
 				);
 				$deeper_pages = get_pages( apply_filters( 'be_subpages_widget_args', $args ) );
 				$this->build_subpages( $deeper_pages, $parents );
