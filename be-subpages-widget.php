@@ -63,7 +63,8 @@ class BE_Subpages_Widget extends WP_Widget {
 			'parent' => $parents[0],
 			'sort_column' => 'menu_order'
 		);
-		$subpages = get_pages( apply_filters( 'be_subpages_widget_args', $args ) );
+		$depth = 1;
+		$subpages = get_pages( apply_filters( 'be_subpages_widget_args', $args, $depth ) );
 		
 		// If there are pages, display the widget
 		if ( empty( $subpages ) ) 
@@ -89,7 +90,7 @@ class BE_Subpages_Widget extends WP_Widget {
 			$instance['deep_subpages'] = 0;
 			
 		// Print the tree
-		$this->build_subpages( $subpages, $parents, $instance['deep_subpages'] );
+		$this->build_subpages( $subpages, $parents, $instance['deep_subpages'], $depth );
 		
 		echo $after_widget;			
 	}
@@ -102,7 +103,7 @@ class BE_Subpages_Widget extends WP_Widget {
 	 * @param bool $deep_subpages, whether to include current page's subpages
 	 * @return string $output
 	 */
-	function build_subpages( $subpages, $parents, $deep_subpages = 0 ) {
+	function build_subpages( $subpages, $parents, $deep_subpages = 0, $depth = 1 ) {
 		global $post;
 		// Build the page listing	
 		echo '<ul>';
@@ -126,8 +127,9 @@ class BE_Subpages_Widget extends WP_Widget {
 					'parent' => $subpage->ID,
 					'sort_column' => 'menu_order'
 				);
-				$deeper_pages = get_pages( apply_filters( 'be_subpages_widget_args', $args ) );
-				$this->build_subpages( $deeper_pages, $parents );
+				$deeper_pages = get_pages( apply_filters( 'be_subpages_widget_args', $args, $depth ) );
+				$depth++;
+				$this->build_subpages( $deeper_pages, $parents, 0, $depth );
 			}
 		}
 		echo '</ul>';
