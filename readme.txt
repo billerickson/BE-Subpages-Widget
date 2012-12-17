@@ -31,6 +31,7 @@ Contributors:
 * Add class for first menu item
 * Add filter for widget title
 * Sort by menu order
+* Add a depth parameter to the args filter
 
 = 1.1 =
 * Allow deeper menu (current page's subpages)
