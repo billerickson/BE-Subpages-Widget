@@ -131,7 +131,7 @@ class BE_Subpages_Widget extends WP_Widget {
 				);
 				$deeper_pages = get_pages( apply_filters( 'be_subpages_widget_args', $args, $depth ) );
 				$depth++;
-				$this->build_subpages( $deeper_pages, $parents, 0, $depth );
+				$this->build_subpages( $deeper_pages, $parents, $deep_subpages, $depth );
 			}
 		}
 		echo '</ul>';
