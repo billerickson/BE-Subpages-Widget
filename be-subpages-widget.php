@@ -104,7 +104,7 @@ class BE_Subpages_Widget extends WP_Widget {
 	 * @return string $output
 	 */
 	function build_subpages( $subpages, $parents, $deep_subpages = 0, $depth = 1 ) {
-		global $post;
+		global $post, $be_subpages_is_first;
 		// Build the page listing	
 		echo '<ul>';
 		foreach ( $subpages as $subpage ) {
