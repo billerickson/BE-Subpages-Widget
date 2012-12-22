@@ -29,6 +29,7 @@ Contributors:
 
 = 1.2 =
 * Add class for first menu item
+* Add filter for widget classes
 * Add filter for widget title
 * Sort by menu order
 * Add a depth parameter to the args filter

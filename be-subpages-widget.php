@@ -108,18 +108,20 @@ class BE_Subpages_Widget extends WP_Widget {
 		// Build the page listing	
 		echo '<ul>';
 		foreach ( $subpages as $subpage ) {
-			$class = "";
+			$class = array();
 			
 			// Set special class for current page
 			if ( $subpage->ID == $post->ID )
-				$class = 'widget_subpages_current_page';
+				$class[] = 'widget_subpages_current_page';
 				
 			// First menu item
 			if( $be_subpages_is_first )
-				$class .= ' first-menu-item';
+				$class[] .= 'first-menu-item';
 			$be_subpages_is_first = false;
+			
+			$class = apply_filters( 'be_subpages_widget_class', $class, $subpage );
 
-			echo '<li class="' . $class . '"><a href="' . get_page_link( $subpage->ID ) . '">' . apply_filters( 'be_subpages_page_title', $subpage->post_title ) . '</a></li>';
+			echo '<li class="' . implode( ' ', $class ) . '"><a href="' . get_page_link( $subpage->ID ) . '">' . apply_filters( 'be_subpages_page_title', $subpage->post_title ) . '</a></li>';
 			// Check if the subpage is in parent tree to go deeper
 			if ( $deep_subpages && in_array( $subpage->ID, $parents ) ) {
 				$args = array(
