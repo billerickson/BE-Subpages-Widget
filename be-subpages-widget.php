@@ -193,5 +193,3 @@ class BE_Subpages_Widget extends WP_Widget {
 	
 
 }
-
-?>
