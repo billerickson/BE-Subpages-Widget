@@ -3,7 +3,7 @@
 Plugin Name: BE Subpages Widget
 Plugin URI: http://www.billerickson.net
 Description: Lists subpages of the current section
-Version: 1.2
+Version: 1.2.1
 Author: Bill Erickson
 Author URI: http://www.billerickson.net
 License: GPLv2
@@ -120,8 +120,9 @@ class BE_Subpages_Widget extends WP_Widget {
 			$be_subpages_is_first = false;
 			
 			$class = apply_filters( 'be_subpages_widget_class', $class, $subpage );
+			$class = !empty( $class ) ? ' class="' . implode( ' ', $class ) . '"' : '';
 
-			echo '<li class="' . implode( ' ', $class ) . '"><a href="' . get_page_link( $subpage->ID ) . '">' . apply_filters( 'be_subpages_page_title', $subpage->post_title ) . '</a></li>';
+			echo '<li' . $class . '><a href="' . get_page_link( $subpage->ID ) . '">' . apply_filters( 'be_subpages_page_title', $subpage->post_title ) . '</a></li>';
 			// Check if the subpage is in parent tree to go deeper
 			if ( $deep_subpages && in_array( $subpage->ID, $parents ) ) {
 				$args = array(

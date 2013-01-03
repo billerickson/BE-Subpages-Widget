@@ -27,6 +27,9 @@ Contributors:
 
 == Changelog ==
 
+= 1.3 = 
+* Only output HTML for classes if there are classes
+
 = 1.2 =
 * Add class for first menu item
 * Add filter for widget classes
