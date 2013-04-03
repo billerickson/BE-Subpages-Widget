@@ -3,7 +3,7 @@
 Plugin Name: BE Subpages Widget
 Plugin URI: http://www.billerickson.net
 Description: Lists subpages of the current section
-Version: 1.2.1
+Version: 1.2.2
 Author: Bill Erickson
 Author URI: http://www.billerickson.net
 License: GPLv2
@@ -33,7 +33,7 @@ class BE_Subpages_Widget extends WP_Widget {
      * @return void
      **/
 	function BE_Subpages_Widget() {
-		load_plugin_textdomain( 'be-subpages', false, basename( dirname( __FILE__ ) ) . '/languages' );
+		load_plugin_textdomain( 'be-subpages', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 		$widget_ops = array( 'classname' => 'widget_subpages', 'description' => __( 'Lists current section subpages', 'be-subpages' ) );
 		$this->WP_Widget( 'subpages-widget', __( 'Subpages Widget', 'be-subpages' ), $widget_ops );
 	}
