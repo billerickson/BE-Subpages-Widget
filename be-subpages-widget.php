@@ -122,7 +122,7 @@ class BE_Subpages_Widget extends WP_Widget {
 			$class = apply_filters( 'be_subpages_widget_class', $class, $subpage );
 			$class = !empty( $class ) ? ' class="' . implode( ' ', $class ) . '"' : '';
 
-			echo '<li' . $class . '><a href="' . get_page_link( $subpage->ID ) . '">' . apply_filters( 'be_subpages_page_title', $subpage->post_title ) . '</a></li>';
+			echo '<li' . $class . '><a href="' . get_page_link( $subpage->ID ) . '">' . apply_filters( 'be_subpages_page_title', $subpage->post_title ) . '</a>';
 			// Check if the subpage is in parent tree to go deeper
 			if ( $deep_subpages && in_array( $subpage->ID, $parents ) ) {
 				$args = array(
@@ -134,6 +134,7 @@ class BE_Subpages_Widget extends WP_Widget {
 				$depth++;
 				$this->build_subpages( $deeper_pages, $parents, $deep_subpages, $depth );
 			}
+			echo '</li>';
 		}
 		echo '</ul>';
 	}
