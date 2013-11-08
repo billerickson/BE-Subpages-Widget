@@ -89,8 +89,11 @@ class BE_Subpages_Widget extends WP_Widget {
 		if( !isset( $instance['deep_subpages'] ) )
 			$instance['deep_subpages'] = 0;
 			
+		if( !isset( $instance['nest_subpages'] ) )
+			$instance['nest_subpages'] = 0;
+
 		// Print the tree
-		$this->build_subpages( $subpages, $parents, $instance['deep_subpages'], $depth );
+		$this->build_subpages( $subpages, $parents, $instance['deep_subpages'], $depth, $instance['nest_subpages'] );
 		
 		echo $after_widget;			
 	}
@@ -103,13 +106,8 @@ class BE_Subpages_Widget extends WP_Widget {
 	 * @param bool $deep_subpages, whether to include current page's subpages
 	 * @return string $output
 	 */
-	function build_subpages( $subpages, $parents, $deep_subpages = 0, $depth = 1 ) {
+	function build_subpages( $subpages, $parents, $deep_subpages = 0, $depth = 1, $nest_subpages = 0 ) {
 		global $post, $be_subpages_is_first;
-		
-		// Return early if empty
-		if( empty( $subpages ) )
-			return;
-			
 		// Build the page listing	
 		echo '<ul>';
 		foreach ( $subpages as $subpage ) {
@@ -127,7 +125,10 @@ class BE_Subpages_Widget extends WP_Widget {
 			$class = apply_filters( 'be_subpages_widget_class', $class, $subpage );
 			$class = !empty( $class ) ? ' class="' . implode( ' ', $class ) . '"' : '';
 
-			echo '<li' . $class . '><a href="' . get_page_link( $subpage->ID ) . '">' . apply_filters( 'be_subpages_page_title', $subpage->post_title ) . '</a></li>';
+			echo '<li' . $class . '><a href="' . get_page_link( $subpage->ID ) . '">' . apply_filters( 'be_subpages_page_title', $subpage->post_title ) . '</a>';
+			// If nesting supress the closing li
+			if (!$nest_subpages)
+				echo '</li>';
 			// Check if the subpage is in parent tree to go deeper
 			if ( $deep_subpages && in_array( $subpage->ID, $parents ) ) {
 				$args = array(
@@ -137,8 +138,12 @@ class BE_Subpages_Widget extends WP_Widget {
 				);
 				$deeper_pages = get_pages( apply_filters( 'be_subpages_widget_args', $args, $depth ) );
 				$depth++;
-				$this->build_subpages( $deeper_pages, $parents, $deep_subpages, $depth );
+				$this->build_subpages( $deeper_pages, $parents, $deep_subpages, $depth, $nest_subpages );
 			}
+			// If li was surpressed for nesting echo it now
+			if ($nest_subpages)
+				echo '</li>';
+
 		}
 		echo '</ul>';
 	}
@@ -158,6 +163,7 @@ class BE_Subpages_Widget extends WP_Widget {
 		$instance['title_from_parent'] = (int) $new_instance['title_from_parent'];
 		$instance['title_link'] = (int) $new_instance['title_link'];
 		$instance['deep_subpages'] = (int) $new_instance['deep_subpages'];
+		$instance['nest_subpages'] = (int) $new_instance['nest_subpages'];
 		
 		return $instance;
 	}
@@ -171,7 +177,7 @@ class BE_Subpages_Widget extends WP_Widget {
 	function form( $instance ) {
 
 		/* Set up some default widget settings. */
-		$defaults = array( 'title' => '', 'title_from_parent' => 0, 'title_link' => 0, 'deep_subpages' => 0 );
+		$defaults = array( 'title' => '', 'title_from_parent' => 0, 'title_link' => 0, 'deep_subpages' => 0, 'nest_subpages' => 0 );
 		$instance = wp_parse_args( (array) $instance, $defaults ); ?>
 		 
 		<p>
@@ -194,8 +200,10 @@ class BE_Subpages_Widget extends WP_Widget {
 			<label for="<?php echo $this->get_field_id( 'deep_subpages' ); ?>"><?php _e( 'Include the current page\'s subpages', 'be-subpages' ); ?></label>
 		</p>
 
+		<p>
+			<input class="checkbox" type="checkbox" value="1" <?php checked( $instance['nest_subpages'], 1 ); ?> id="<?php echo $this->get_field_id( 'nest_subpages' ); ?>" name="<?php echo $this->get_field_name( 'nest_subpages' ); ?>" />
+			<label for="<?php echo $this->get_field_id( 'nest_subpages' ); ?>"><?php _e( 'Nest sub-page &lt;ul&gt; inside parent &lt;li&gt;', 'be-subpages' ); echo '<br /><em>('; _e( "only if &quot;Include the current page's subpages&quot; is checked", 'be-subpages' ); echo ')</em></label>';?></p>
+
 		<?php
 	}	
-	
-
 }
