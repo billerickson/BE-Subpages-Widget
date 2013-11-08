@@ -22,6 +22,8 @@ be_subpages_page_title - customize the page title
 Contributors:
 - [billerickson](http://profiles.wordpress.org/billerickson)
 - [scil](http://profiles.wordpress.org/scil/)
+- [jb510](https://github.com/jb510)
+- [fabiancz](https://github.com/fabiancz)
 
 [Support Forum](https://github.com/billerickson/BE-Subpages-Widget/issues)
 
