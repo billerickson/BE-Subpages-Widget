@@ -2,8 +2,8 @@
 Contributors: billerickson
 Tags: widget, subpages, menu
 Requires at least: 3.0
-Tested up to: 3.3.2
-Stable tag: 1.2
+Tested up to: 3.7.1
+Stable tag: 1.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -29,6 +29,8 @@ Contributors:
 
 = 1.3 = 
 * Only output HTML for classes if there are classes
+* Allow second level subpages to be nested in li
+* Czech translation
 
 = 1.2 =
 * Add class for first menu item
