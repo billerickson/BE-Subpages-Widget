@@ -202,10 +202,8 @@ class BE_Subpages_Widget extends WP_Widget {
 
 		<p>
 			<input class="checkbox" type="checkbox" value="1" <?php checked( $instance['nest_subpages'], 1 ); ?> id="<?php echo $this->get_field_id( 'nest_subpages' ); ?>" name="<?php echo $this->get_field_name( 'nest_subpages' ); ?>" />
-			<label for="<?php echo $this->get_field_id( 'nest_subpages' ); ?>"><?php _e( 'Nest sub-page &lt;ul&gt; inside parent &lt;li$gr;', 'be-subpages' ); echo '<br /><em>('; _e( "only if &quot;Include the current page's subpages&quot; is checked', 'be-subpages' ); echo ')</em></label>';?>		</p>
+			<label for="<?php echo $this->get_field_id( 'nest_subpages' ); ?>"><?php _e( 'Nest sub-page &lt;ul&gt; inside parent &lt;li&gt;', 'be-subpages' ); echo '<br /><em>('; _e( "only if &quot;Include the current page's subpages&quot; is checked", 'be-subpages' ); echo ')</em></label>';?></p>
 
 		<?php
 	}	
-	
-
 }
