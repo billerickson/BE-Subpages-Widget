@@ -48,8 +48,9 @@ class BE_Subpages_Widget extends WP_Widget {
 	function widget( $args, $instance ) {
 		extract( $args, EXTR_SKIP );
 		
-		// Only run on pages
-		if ( !is_page() )
+		// Only run on hierarchical post types
+		$post_types = get_post_types( array( 'hierarchical' => true ) );
+		if ( !is_singular( $post_types ) )
 			return;
 			
 		// Find top level parent and create path to it
@@ -61,7 +62,8 @@ class BE_Subpages_Widget extends WP_Widget {
 		$args = array(
 			'child_of' => $parents[0],
 			'parent' => $parents[0],
-			'sort_column' => 'menu_order'
+			'sort_column' => 'menu_order',
+			'post_type' => get_post_type(),
 		);
 		$depth = 1;
 		$subpages = get_pages( apply_filters( 'be_subpages_widget_args', $args, $depth ) );
@@ -137,7 +139,8 @@ class BE_Subpages_Widget extends WP_Widget {
 				$args = array(
 					'child_of' => $subpage->ID,
 					'parent' => $subpage->ID,
-					'sort_column' => 'menu_order'
+					'sort_column' => 'menu_order',
+					'post_type' => get_post_type(),
 				);
 				$deeper_pages = get_pages( apply_filters( 'be_subpages_widget_args', $args, $depth ) );
 				$depth++;

@@ -30,7 +30,9 @@ Contributors:
 == Changelog ==
 
 = 1.3 = 
+* Support for all hierarchical post types
 * Only output HTML for classes if there are classes
+* Only output subpages ul if there are subpages
 * Allow second level subpages to be nested in li
 * Czech translation
 
