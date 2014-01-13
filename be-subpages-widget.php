@@ -50,7 +50,7 @@ class BE_Subpages_Widget extends WP_Widget {
 		
 		// Only run on hierarchical post types
 		$post_types = get_post_types( array( 'hierarchical' => true ) );
-		if ( !is_singular( $post_types ) )
+		if ( !is_singular( $post_types ) && !apply_filters( 'be_subpages_widget_display_override', false ) )
 			return;
 			
 		// Find top level parent and create path to it
