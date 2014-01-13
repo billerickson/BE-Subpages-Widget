@@ -47,11 +47,12 @@ class BE_Subpages_Widget extends WP_Widget {
      **/
 	function widget( $args, $instance ) {
 		extract( $args, EXTR_SKIP );
-		
-		// Only run on hierarchical post types
+				
+		// Only run on hierarchical post types unless passed a 'post_type'
+		$page_filter_check = apply_filters( 'be_subpages_widget_args', $args );
 		$post_types = get_post_types( array( 'hierarchical' => true ) );
-		if ( !is_singular( $post_types ) )
-			return;
+		if ( !is_singular( $post_types ) && !isset($page_filter_check['post_type'] ) )
+		    return;
 			
 		// Find top level parent and create path to it
 		global $post;
