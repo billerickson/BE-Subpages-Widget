@@ -130,7 +130,7 @@ class BE_Subpages_Widget extends WP_Widget {
 			$class = apply_filters( 'be_subpages_widget_class', $class, $subpage );
 			$class = !empty( $class ) ? ' class="' . implode( ' ', $class ) . '"' : '';
 
-			echo '<li' . $class . '><a href="' . get_permalink( $subpage->ID ) . '">' . apply_filters( 'be_subpages_page_title', $subpage->post_title ) . '</a>';
+			echo '<li' . $class . '><a href="' . get_permalink( $subpage->ID ) . '">' . apply_filters( 'be_subpages_page_title', $subpage->post_title, $subpage ) . '</a>';
 			// If nesting supress the closing li
 			if (!$nest_subpages)
 				echo '</li>';
