@@ -33,6 +33,10 @@ Contributors:
 
 == Changelog ==
 
+= 1.5 = 
+* Add filter for changing section parents
+* Add unique class to menu items, menu-item-{id}
+
 = 1.4 =
 * Update widget formatting in backend
 * Subpage titles are filterable

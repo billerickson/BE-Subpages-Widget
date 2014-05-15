@@ -119,6 +119,9 @@ class BE_Subpages_Widget extends WP_Widget {
 		foreach ( $subpages as $subpage ) {
 			$class = array();
 			
+			// Unique Identifier
+			$class[] = 'menu-item-' . $subpage->ID;
+			
 			// Set special class for current page
 			if ( $subpage->ID == $post->ID )
 				$class[] = 'widget_subpages_current_page';
