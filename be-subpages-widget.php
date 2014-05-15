@@ -57,6 +57,7 @@ class BE_Subpages_Widget extends WP_Widget {
 		global $post;
 		$parents = array_reverse( get_ancestors( $post->ID, 'page' ) );
 		$parents[] = $post->ID;
+		$parents = apply_filters( 'be_subpages_widget_parents', $parents );
 
 		// Build a menu listing top level parent's children
 		$args = array(
