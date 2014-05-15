@@ -3,7 +3,7 @@
 Plugin Name: BE Subpages Widget
 Plugin URI: http://www.billerickson.net
 Description: Lists subpages of the current section
-Version: 1.4
+Version: 1.4.1
 Author: Bill Erickson
 Author URI: http://www.billerickson.net
 License: GPLv2
