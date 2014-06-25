@@ -2,8 +2,8 @@
 Contributors: billerickson
 Tags: widget, subpages, menu
 Requires at least: 3.0
-Tested up to: 3.7.1
-Stable tag: 1.3
+Tested up to: 3.9
+Stable tag: 1.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -17,7 +17,11 @@ It can also include the current page's subpages in listing.
 
 You can customize the listing with the following filters: 
 be_subpages_widget_args - modifies the arguments passed to wp_list_pages
+be_subpages_widget_display_override - determine when the widget is displayed
+be_subpages_widget_parents - customize the hierarchy used in querying subpages
+be_subpages_widget_title - customize the widget title
 be_subpages_page_title - customize the page title
+be_subpages_widget_class - customize the classes applied to pages
 
 Contributors:
 - [billerickson](http://profiles.wordpress.org/billerickson)
@@ -28,6 +32,14 @@ Contributors:
 [Support Forum](https://github.com/billerickson/BE-Subpages-Widget/issues)
 
 == Changelog ==
+
+= 1.5 = 
+* Add filter for changing section parents
+* Add unique class to menu items, menu-item-{id}
+
+= 1.4 =
+* Update widget formatting in backend
+* Subpage titles are filterable
 
 = 1.3 = 
 * Support for all hierarchical post types

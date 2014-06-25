@@ -3,7 +3,7 @@
 Plugin Name: BE Subpages Widget
 Plugin URI: http://www.billerickson.net
 Description: Lists subpages of the current section
-Version: 1.3
+Version: 1.4.1
 Author: Bill Erickson
 Author URI: http://www.billerickson.net
 License: GPLv2
@@ -47,17 +47,17 @@ class BE_Subpages_Widget extends WP_Widget {
      **/
 	function widget( $args, $instance ) {
 		extract( $args, EXTR_SKIP );
-				
-		// Only run on hierarchical post types unless passed a 'post_type'
-		$page_filter_check = apply_filters( 'be_subpages_widget_args', $args );
+		
+		// Only run on hierarchical post types
 		$post_types = get_post_types( array( 'hierarchical' => true ) );
-		if ( !is_singular( $post_types ) && !isset($page_filter_check['post_type'] ) )
-		    return;
+		if ( !is_singular( $post_types ) && !apply_filters( 'be_subpages_widget_display_override', false ) )
+			return;
 			
 		// Find top level parent and create path to it
 		global $post;
 		$parents = array_reverse( get_ancestors( $post->ID, 'page' ) );
 		$parents[] = $post->ID;
+		$parents = apply_filters( 'be_subpages_widget_parents', $parents );
 
 		// Build a menu listing top level parent's children
 		$args = array(
@@ -119,6 +119,9 @@ class BE_Subpages_Widget extends WP_Widget {
 		foreach ( $subpages as $subpage ) {
 			$class = array();
 			
+			// Unique Identifier
+			$class[] = 'menu-item-' . $subpage->ID;
+			
 			// Set special class for current page
 			if ( $subpage->ID == $post->ID )
 				$class[] = 'widget_subpages_current_page';
@@ -131,7 +134,7 @@ class BE_Subpages_Widget extends WP_Widget {
 			$class = apply_filters( 'be_subpages_widget_class', $class, $subpage );
 			$class = !empty( $class ) ? ' class="' . implode( ' ', $class ) . '"' : '';
 
-			echo '<li' . $class . '><a href="' . get_permalink( $subpage->ID ) . '">' . apply_filters( 'be_subpages_page_title', $subpage->post_title ) . '</a>';
+			echo '<li' . $class . '><a href="' . get_permalink( $subpage->ID ) . '">' . apply_filters( 'be_subpages_page_title', $subpage->post_title, $subpage ) . '</a>';
 			// If nesting supress the closing li
 			if (!$nest_subpages)
 				echo '</li>';
