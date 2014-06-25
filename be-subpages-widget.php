@@ -138,6 +138,9 @@ class BE_Subpages_Widget extends WP_Widget {
 			// If nesting supress the closing li
 			if (!$nest_subpages)
 				echo '</li>';
+			
+			do_action( 'be_subpages_widget_menu_extra', $subpage, $class );
+			
 			// Check if the subpage is in parent tree to go deeper
 			if ( $deep_subpages && in_array( $subpage->ID, $parents ) ) {
 				$args = array(
