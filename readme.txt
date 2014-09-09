@@ -2,8 +2,8 @@
 Contributors: billerickson
 Tags: widget, subpages, menu
 Requires at least: 3.0
-Tested up to: 3.9
-Stable tag: 1.4
+Tested up to: 4.0
+Stable tag: 1.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -29,13 +29,16 @@ Contributors:
 - [jb510](https://github.com/jb510)
 - [fabiancz](https://github.com/fabiancz)
 
-[Support Forum](https://github.com/billerickson/BE-Subpages-Widget/issues)
+**No support will be provided by the developer**
+
+[View all plugins by Bill Erickson](http://www.billerickson.net/contributions/plugins/)
 
 == Changelog ==
 
 = 1.5 = 
 * Add filter for changing section parents
 * Add unique class to menu items, menu-item-{id}
+* Add hook for adding links to end of subpages listing
 
 = 1.4 =
 * Update widget formatting in backend
