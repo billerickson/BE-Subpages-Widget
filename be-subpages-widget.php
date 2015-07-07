@@ -35,7 +35,7 @@ class BE_Subpages_Widget extends WP_Widget {
 	function __construct() {
 		load_plugin_textdomain( 'be-subpages', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 		$widget_ops = array( 'classname' => 'widget_subpages', 'description' => __( 'Lists current section subpages', 'be-subpages' ) );
-		$this->WP_Widget( 'subpages-widget', __( 'Subpages Widget', 'be-subpages' ), $widget_ops );
+		parent::__construct( 'subpages-widget', __( 'Subpages Widget', 'be-subpages' ), $widget_ops );
 	}
 
     /**
