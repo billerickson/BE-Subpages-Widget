@@ -81,9 +81,9 @@ class BE_Subpages_Widget extends WP_Widget {
 		// Build title
 		$title = esc_attr( $instance['title'] );
 		if( 1 == $instance['title_from_parent'] ) {
-			$title = get_the_title( $parents[0] );
+			$title = apply_filters( 'be_subpages_widget_title', get_the_title( $parents[0] ) );
 			if( 1 == $instance['title_link'] )
-				$title = '<a href="' . get_permalink( $parents[0] ) . '">' . apply_filters( 'be_subpages_widget_title', $title ) . '</a>';
+				$title = '<a href="' . get_permalink( $parents[0] ) . '">' . $title . '</a>';
 		}	
 
 		if( !empty( $title ) ) 
