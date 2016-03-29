@@ -3,7 +3,7 @@
 Plugin Name: BE Subpages Widget
 Plugin URI: http://www.billerickson.net
 Description: Lists subpages of the current section
-Version: 1.6
+Version: 1.6.1
 Author: Bill Erickson
 Author URI: http://www.billerickson.net
 License: GPLv2
@@ -55,6 +55,7 @@ class BE_Subpages_Widget extends WP_Widget {
 			
 		// Find top level parent and create path to it
 		global $post;
+		$post = apply_filters( 'be_subpages_widget_override_post', $post );
 		$parents = array_reverse( get_ancestors( $post->ID, 'page' ) );
 		$parents[] = $post->ID;
 		$parents = apply_filters( 'be_subpages_widget_parents', $parents );
