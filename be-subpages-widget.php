@@ -119,9 +119,13 @@ class BE_Subpages_Widget extends WP_Widget {
 		echo '<ul>';
 		foreach ( $subpages as $subpage ) {
 			$class = array();
-			
+
+			// Determine depth of current subpage 
+			$liparent = get_ancestors( $subpage->ID, 'page' );
+			$levelcount = count($liparent);
+
 			// Unique Identifier
-			$class[] = 'menu-item-' . $subpage->ID;
+			$class[] = 'menu-item-' . $subpage->ID . ' subpage-level-' . $levelcount;
 			
 			// Set special class for current page
 			if ( $subpage->ID == $post->ID )
