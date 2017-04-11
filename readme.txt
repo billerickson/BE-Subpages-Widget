@@ -2,8 +2,8 @@
 Contributors: billerickson
 Tags: widget, subpages, menu
 Requires at least: 3.0
-Tested up to: 4.3
-Stable tag: 1.6
+Tested up to: 4.7
+Stable tag: 1.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -11,11 +11,11 @@ Lists subpages of the current section
 
 == Description ==
 
-This widget will dynamically list a section's subpages. When on a page, it will find the section's top level page and list its children. 
+This widget will dynamically list a section's subpages. When on a page, it will find the section's top level page and list its children.
 
 It can also include the current page's subpages in listing.
 
-You can customize the listing with the following filters: 
+You can customize the listing with the following filters:
 be_subpages_widget_args - modifies the arguments passed to wp_list_pages
 be_subpages_widget_display_override - determine when the widget is displayed
 be_subpages_widget_override_post - change the current post
@@ -30,19 +30,17 @@ Contributors:
 - [jb510](https://github.com/jb510)
 - [fabiancz](https://github.com/fabiancz)
 
-**No support will be provided by the developer**
-
 [View all plugins by Bill Erickson](http://www.billerickson.net/contributions/plugins/)
 
 == Changelog ==
 
-= 1.6.1 = 
+= 1.7 =
 * Allow $post to be filtered
 
 = 1.6 =
 * Update widget to use PHP5 constructor
 
-= 1.5 = 
+= 1.5 =
 * Add filter for changing section parents
 * Add unique class to menu items, menu-item-{id}
 * Add hook for adding links to end of subpages listing
@@ -51,7 +49,7 @@ Contributors:
 * Update widget formatting in backend
 * Subpage titles are filterable
 
-= 1.3 = 
+= 1.3 =
 * Support for all hierarchical post types
 * Only output HTML for classes if there are classes
 * Only output subpages ul if there are subpages
