@@ -4,13 +4,8 @@
 const { __ } = wp.i18n;
 const {
   registerBlockType,
-  Editable,
 } = wp.blocks;
-const {
-	withInstanceId,
-	withAPIData
-} = wp.components;
-const { buildTermsTree } = wp.utils;
+
 
 
 /**
@@ -19,7 +14,7 @@ const { buildTermsTree } = wp.utils;
 //import './style.scss';
 //import './editor.scss';
 import listSubpages from './list-subpages';
-import selectSubpages from './select-subpages';
+import SelectSubpages from './select-subpages';
 
 /**
  * Register block
@@ -39,10 +34,14 @@ export default registerBlockType(
 	    },
 
         edit: props => {
+          const onChangeParent = ( value ) => {
+            props.setAttributes( { parentId: value } );
+          };
+
           return (
             <div className={ props.className }>
 				{ !! props.focus ? (
-					selectSubpages()
+					<SelectSubpages inputValue={props.attributes.parentId} onChange={ onChangeParent } />
 				) : (
 					listSubpages()
 				)}
