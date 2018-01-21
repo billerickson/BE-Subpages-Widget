@@ -65,3 +65,45 @@ function be_subpages_widget_block_scripts()
 
 }
 //add_action( 'enqueue_block_assets', 'be_subpages_widget_block_scripts');
+
+/**
+ * Register callback for block
+ *
+ */
+function be_subpages_widget_register_block_callback() {
+
+	if( ! function_exists( 'register_block_type' ) )
+		return;
+
+	register_block_type( 'be/list-subpages', [
+	    'render_callback' => 'be_subpages_widget_block_callback',
+	] );
+
+}
+add_action( 'plugins_loaded', 'be_subpages_widget_register_block_callback' );
+
+/**
+ * Callback for block
+ *
+ */
+function be_subpages_widget_block_callback( $attributes ) {
+
+	$loop = new WP_Query( array(
+		'post_type' => 'page',
+		'post_parent' => intval( $attributes[ 'parentId' ] ),
+		'orderby' => 'menu_order',
+		'order' => 'ASC',
+	));
+
+	$output = '';
+	if( $loop->have_posts() ):
+		$output .= '<ul class="wp-block-be-list-subpages">';
+		while( $loop->have_posts() ) : $loop->the_post();
+			$output .= '<li><a href="' . get_permalink() . '">' . get_the_title() . '</a></li>';
+		endwhile;
+		$output .= '</ul>';
+	endif;
+	wp_reset_postdata();
+
+	return $output;
+}
