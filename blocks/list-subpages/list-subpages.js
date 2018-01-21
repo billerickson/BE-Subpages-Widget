@@ -2,6 +2,8 @@
  * External dependencies
  */
 import { get } from 'lodash';
+import { stringify } from 'querystringify';
+
 /**
  * WordPress dependencies
  */
@@ -33,8 +35,15 @@ class ListSubpages extends Component {
 }
 
 const applyWithAPIData = withAPIData( ( props ) => {
+	const query = stringify( {
+		per_page: 100,
+		parent: props.parentId,
+		orderby: 'menu_order',
+		order: 'asc',
+		_fields: [ 'id', 'parent', 'title' ],
+	} );
 	return {
-		pages: `/wp/v2/pages?per_page=100&parent=${props.parentId}&orderby=menu_order&order=asc`,
+		pages: `/wp/v2/pages?${ query }`,
 	};
 } );
 

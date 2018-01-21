@@ -2,6 +2,8 @@
  * External dependencies
  */
 import { get } from 'lodash';
+import { stringify } from 'querystringify';
+
 
 /**
  * WordPress dependencies
@@ -31,7 +33,7 @@ function SelectSubpages( { label, pages, noOptionLabel, parentId, onChange } ) {
 }
 
 const applyWithAPIData = withAPIData( () => {
-	const query = JSON.stringify( {
+	const query = stringify( {
 		context: 'edit',
 		per_page: 100,
 		_fields: [ 'id', 'parent', 'title' ],
