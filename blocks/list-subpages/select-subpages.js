@@ -36,6 +36,8 @@ const applyWithAPIData = withAPIData( () => {
 	const query = stringify( {
 		context: 'edit',
 		per_page: 100,
+		orderby: 'menu_order',
+		order: 'asc',
 		_fields: [ 'id', 'parent', 'title' ],
 	} );
 	return {
