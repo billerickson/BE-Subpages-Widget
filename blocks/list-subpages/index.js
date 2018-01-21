@@ -22,14 +22,14 @@ import SelectSubpages from './select-subpages';
 export default registerBlockType(
     'be/list-subpages',
     {
-        title: __( 'List Subpages' ),
-        category: 'widgets',
-        icon: 'list-view',
-        attributes: {
-          parentId: {
-            type: 'int',
-		  },
-	    },
+		title: __( 'List Subpages' ),
+		category: 'widgets',
+		icon: 'list-view',
+		attributes: {
+			parentId: {
+				type: 'int',
+			},
+		},
 
         edit: props => {
           const onChangeParent = ( value ) => {
