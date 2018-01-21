@@ -1,40 +1,44 @@
 /**
- * WordPress Dependencies
+ * External dependencies
  */
-const { __ } = wp.i18n;
-const { InspectorControls } = wp.blocks;
-const { SelectControl } = InspectorControls;
-const { Component } = wp.element;
-
-/*
- * Declare variables
- *
- */
-const parentOptions = [
-	{ value: '1', label: __( 'Option 1' ) },
-	{ value: '2', label: __( 'Option 2' ) },
-];
+import { get } from 'lodash';
 
 /**
- * Returns a select menu with subpages
- *
+ * WordPress dependencies
  */
+const { __ } = wp.i18n;
+const { buildTermsTree } = wp.utils;
+const { withAPIData } = wp.components;
+const { TermTreeSelect } = wp.blocks;
 
-export default class SelectSubpages extends Component {
-
-  constructor( props ) {
-    super( ...arguments );
-  }
-  render() {
+function SelectSubpages( { label, pages, noOptionLabel, parentId, onChange } ) {
+	const pageItems = get( pages, 'data', [] );
+	const pagesTree = buildTermsTree( pageItems.map( ( item ) => ( {
+		id: item.id,
+		parent: item.parent,
+		name: item.title.rendered ? item.title.rendered : `#${ item.id } (${ __( 'no title' ) })`,
+	} ) ) );
 
 	return (
-			<SelectControl
-				label={ __( 'Display Subpages From' ) }
-				options={parentOptions}
-				onChange={ this.props.onChange }
-				value={ this.props.inputValue }
-			/>
-
+		<TermTreeSelect
+			label={ label }
+			noOptionLabel={ `(${ __( 'no parent' ) })` }
+			termsTree={ pagesTree }
+			selectedTerm={ parentId }
+			onChange={ onChange }
+		/>
 	);
-  }
 }
+
+const applyWithAPIData = withAPIData( () => {
+	const query = JSON.stringify( {
+		context: 'edit',
+		per_page: 100,
+		_fields: [ 'id', 'parent', 'title' ],
+	} );
+	return {
+		pages: `/wp/v2/pages?${ query }`,
+	};
+} );
+
+export default applyWithAPIData( SelectSubpages );

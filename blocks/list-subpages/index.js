@@ -13,7 +13,7 @@ const {
  */
 //import './style.scss';
 //import './editor.scss';
-import listSubpages from './list-subpages';
+import ListSubpages from './list-subpages';
 import SelectSubpages from './select-subpages';
 
 /**
@@ -27,9 +27,7 @@ export default registerBlockType(
         icon: 'list-view',
         attributes: {
           parentId: {
-            source: 'text',
             type: 'int',
-            selector: '.parent-id',
 		  },
 	    },
 
@@ -41,18 +39,21 @@ export default registerBlockType(
           return (
             <div className={ props.className }>
 				{ !! props.focus ? (
-					<SelectSubpages inputValue={props.attributes.parentId} onChange={ onChangeParent } />
+					<SelectSubpages
+						label={ __( 'Display Subpages Of' ) }
+						parentId={ props.attributes.parentId }
+						onChange={ onChangeParent }
+					/>
 				) : (
-					listSubpages()
+					<ListSubpages parentId={ props.attributes.parentId} className={props.className} />
 				)}
             </div>
           );
         },
 
         save: props => {
-          return (
-			  listSubpages()
-          );
+	        // Rendering in PHP
+	        return null;
         },
     },
 );
